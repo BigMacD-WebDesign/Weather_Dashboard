@@ -1,4 +1,16 @@
 #futureforecast {
     display: flex;
     float: left;
+    /* max-width: 90%; */
+}
+
+.card {
+    margin: 1%;
+    /* padding: 5%; */
+}
+
+#title {
+    width: 100%;
+    height: 10% !important;
+    
 }
