@@ -1,12 +1,6 @@
 let APIKey = "9a936c558ee294585acc3927c01d451b";
-// let history = JSON.parse(localStorage.getItem("searchHistory")) || [];
-// let history = localStorage.getItem("searchHistory") || [];
 
 $(document).ready(function () {
-
-    
-    // let queryURL = "https://api.openweathermap.org/data/2.5/weather?" +
-    // "q=&appid=" + APIKey;
 
     $("#searchBtn").on("click", function () {
         let inputVal = $("#input").val();
@@ -14,22 +8,12 @@ $(document).ready(function () {
         forecast(inputVal);
         var history = getHistory;
         history.push(inputVal);
-        localStorage.setItem("searchHistory",JSON.stringify(history));
+        localStorage.setItem("searchHistory", JSON.stringify(history));
         console.log(localStorage.getItem("searchHistory"));
     });
-
-
-
-
+    
     display();
 });
-
-// function search() {
-//     console.log(localStorage.getItem("searchHistory"));
-//     for (let i = 0; i < history.length; i++) {
-//         $("#history").append(`<button>${history[i]}</button>`);
-//     }
-// }
 
 function currentWeather(cityName) {
     let queryURL = "https://api.openweathermap.org/data/2.5/weather?" +
@@ -58,7 +42,7 @@ function forecast(cityName) {
         .then(function (response) {
             console.log(response);
             $("#futureforecast").empty();
-            for (var i = 0; i < response.list.length; i = i+8) {
+            for (var i = 0; i < response.list.length; i = i + 8) {
                 $("#futureforecast").append(`<div class="card bg-info text-dark" style="width: 18rem;"><p>${response.list[i].dt_txt}</p><p>${response.list[i].main.temp}°F
                 </p><p>${response.list[i].wind.speed}mph</p><p>${response.list[i].main.humidity}%</p><img src="https://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png"></div>`)
             };
@@ -77,7 +61,7 @@ function display() {
         console.log();
     }
 }
-$("#history").on("click",".data", function (){
+$("#history").on("click", ".data", function () {
     var cityName = $(this).attr("data-cityName");
     console.log(cityName);
     currentWeather(cityName);
